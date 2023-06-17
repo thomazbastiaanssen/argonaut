@@ -1,0 +1,10 @@
+Package: argonaut
+Type: Package
+Title: Stratified Feature Table Utilities
+Version: 0.0.1
+Authors@R: c(
+   person("Thomaz", "Bastiaanssen", email = "thomaz.bastiaanssen@ucc.ie", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6891-734X"))
+   )
+Maintainer: Thomaz Bastiaanssen <thomaz.bastiaanssen@ucc.ie>
+Description: An R package about dealing with stratified feature tables.
+RoxygenNote: 7.2.3
