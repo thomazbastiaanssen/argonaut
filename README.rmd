@@ -12,7 +12,7 @@ Please note this package is under active development.
 ```{r demo}
 library(argonaut)
 #make some dummy data
-sdf <- dummy_strat(2, 3, 4)
+sdf <- dummy_strat(2, 3, 4, type = "by_subtype")
  
 head(sdf)
 

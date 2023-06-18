@@ -2,11 +2,11 @@
 #' @description A method to apply a function by dimension for stratified feature tables. Wraps around apply.  
 #' @param X A stratified feature table object. Preferrably of the stratifiedFeatureTable class.   
 #' @param MARGIN An single integer indicating which dimension to apply a given function on. 1 indicates by sample, 2 by feature and 3 by subtype. 
-#' @param FUN The function to be applied: see `?apply`. 
+#' @param FUN The function to be applied; See `?apply`. 
 #' @param na.exclude A boolean. Recommended to keep at TRUE.
 #' @param ... Optional arguments to FUN.
 #' @param simplify A logical indicating whether results should be simplified if possible.
-#' @return A formatted data.frame.
+#' @return See `?apply`.
 #' @export
 #'
 apply_by <- function(X, MARGIN, FUN, na.exclude = TRUE, ..., simplify = TRUE){

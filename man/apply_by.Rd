@@ -11,7 +11,7 @@ apply_by(X, MARGIN, FUN, na.exclude = TRUE, ..., simplify = TRUE)
 
 \item{MARGIN}{An single integer indicating which dimension to apply a given function on. 1 indicates by sample, 2 by feature and 3 by subtype.}
 
-\item{FUN}{The function to be applied: see `?apply`.}
+\item{FUN}{The function to be applied; See `?apply`.}
 
 \item{na.exclude}{A boolean. Recommended to keep at TRUE.}
 
@@ -20,7 +20,7 @@ apply_by(X, MARGIN, FUN, na.exclude = TRUE, ..., simplify = TRUE)
 \item{simplify}{A logical indicating whether results should be simplified if possible.}
 }
 \value{
-A formatted data.frame.
+See `?apply`.
 }
 \description{
 A method to apply a function by dimension for stratified feature tables. Wraps around apply.

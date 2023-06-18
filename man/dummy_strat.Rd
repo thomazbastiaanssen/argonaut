@@ -4,14 +4,18 @@
 \alias{dummy_strat}
 \title{Make dummy stratified data.}
 \usage{
-dummy_strat(nmicrobes, ngenes, nsamples)
+dummy_strat(nsubtypes, nfeatures, nsamples, type = "seq", p_missing = 0.2)
 }
 \arguments{
-\item{nmicrobes}{An integer. How many microbes}
+\item{nsubtypes}{An integer. How many subtypes}
 
-\item{ngenes}{An integer. How many genes}
+\item{nfeatures}{An integer. How many features}
 
 \item{nsamples}{An integer. How many samples}
+
+\item{type}{A character vector. One ofc("seq", "by_subtype").}
+
+\item{p_missing}{A proportion (0-1). Indicates the number of feature-subtype pairs should be dropped.}
 }
 \value{
 A formatted data.frame.
