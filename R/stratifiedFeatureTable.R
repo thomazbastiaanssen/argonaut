@@ -29,11 +29,14 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
   #Fill gaps with NAs
   x = merge(x = x, y = data.frame(row.names = all_comb), by.x = 0, by.y = 0, all.y = T)[,-1]
   
-  row.names(x) <- all_comb
-  
   #Reorganize input data to ensure reasonable indexing
+  x = t(x)
+  
+  #Restore names
+  colnames(x) <- all_comb
+  
   ar <- array(
-    data = t(x), 
+    data = x, 
     dim  = sapply(FUN = length, dimlist), 
     dimnames = dimlist
               )
