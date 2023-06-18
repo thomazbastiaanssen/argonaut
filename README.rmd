@@ -12,7 +12,7 @@ Please note this package is under active development.
 ```{r demo}
 library(argonaut)
 #make some dummy data
-sdf <- dummy_strat(2, 3, 4, type = "by_subtype")
+sdf <- dummy_strat(2, 3, 4, type = "seq")
  
 head(sdf)
 
@@ -21,10 +21,24 @@ as.stratifiedFeatureTable(sdf)
 
 
 #argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
+sdf <- dummy_strat(10, 10, 6, type = "by_subtype", p_missing = 0.2)
 
-sdf <- sdf[-c(2, 4),]
+head(sdf)
 
-as.stratifiedFeatureTable(sdf)
+head(as.stratifiedFeatureTable(sdf))
 
+
+```
+
+#Apply_by()
+```{r apply_by}
+#We can apply a function on the stratifiedFeatureTable with the apply_by() function. 
+
+stf = as.stratifiedFeatureTable(sdf)
+
+#MARGIN must be exactly 1, 2 or 3, corresponding to applying a function on all observations (1) per sample, (2) per feature or (3) per subtype.  
+
+#for example, we can collapse to an unstratified feature table by summing all subtypes of the same feature. 
+apply_by(X = stf, MARGIN = 3, FUN = sum)
 
 ```
