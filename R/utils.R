@@ -24,7 +24,7 @@ dummy_strat <- function(nsubtypes, nfeatures, nsamples, type = "seq", p_missing 
   
   data.frame(row.names = paste0(
     rep(paste0("subtype_", formatC(1:nsubtypes, digits = nchar(nsubtypes), format = "d", flag = "0")), each = nfeatures), 
-    rep(paste0("|function_", formatC(1:nfeatures, digits = nchar(nfeatures), format = "d", flag = "0")))),  
+    rep(paste0("|feature_", formatC(1:nfeatures, digits = nchar(nfeatures), format = "d", flag = "0")))),  
     
     values
 
