@@ -21,7 +21,7 @@ as.stratifiedFeatureTable(sdf)
 
 
 #argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
-sdf <- dummy_strat(10, 10, 6, type = "by_subtype", p_missing = 0.2)
+sdf <- dummy_strat(10, 5, 6, type = "by_subtype", p_missing = 0.2)
 
 head(sdf)
 
