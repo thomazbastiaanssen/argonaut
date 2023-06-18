@@ -17,8 +17,14 @@ sdf <- dummy_strat(2, 3, 4)
 head(sdf)
 
 #wrangle to stratifiedFeatureTable
-sft <- as.stratifiedFeatureTable(sdf)
+as.stratifiedFeatureTable(sdf)
 
-sft
+
+#argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
+
+sdf <- sdf[-c(2, 4),]
+
+as.stratifiedFeatureTable(sdf)
+
 
 ```

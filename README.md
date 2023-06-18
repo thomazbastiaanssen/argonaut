@@ -22,9 +22,7 @@ head(sdf)
 
 ``` r
 #wrangle to stratifiedFeatureTable
-sft <- as.stratifiedFeatureTable(sdf)
-
-sft
+as.stratifiedFeatureTable(sdf)
 ```
 
     ## An object of class "stratifiedFeatureTable"
@@ -45,3 +43,30 @@ sft
     ##      X2         10         11         12
     ##      X3         16         17         18
     ##      X4         22         23         24
+
+``` r
+#argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
+
+sdf <- sdf[-c(2, 4),]
+
+as.stratifiedFeatureTable(sdf)
+```
+
+    ## An object of class "stratifiedFeatureTable"
+    ## , , subtypes = microbe_1
+    ## 
+    ##        features
+    ## samples function_1 function_2 function_3
+    ##      X1          1         NA          3
+    ##      X2          7         NA          9
+    ##      X3         13         NA         15
+    ##      X4         19         NA         21
+    ## 
+    ## , , subtypes = microbe_2
+    ## 
+    ##        features
+    ## samples function_1 function_2 function_3
+    ##      X1         NA          5          6
+    ##      X2         NA         11         12
+    ##      X3         NA         17         18
+    ##      X4         NA         23         24
