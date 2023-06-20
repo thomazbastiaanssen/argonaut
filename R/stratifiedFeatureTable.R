@@ -45,3 +45,6 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
   new("stratifiedFeatureTable", ar)
 }
 
+#' @rdname as.stratifiedFeatureTable
+#' @export
+as.sft <- as.stratifiedFeatureTable
