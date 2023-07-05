@@ -14,7 +14,7 @@ dummy_strat <- function(nsubtypes, nfeatures, nsamples, type = "seq", feature_na
   stopifnot("type must be `seq` or `by_subtype`." = type %in% c("seq", "by_subtype"))
   stopifnot("The argument `p_missing` is a proportion and should be between 0-1." = p_missing >= 0 & p_missing <= 1)
   
-  if(is.null(feature_names)){feature_names = paste0("|feature_", formatC(1:nfeatures, digits = nchar(nfeatures), format = "d", flag = "0"))}
+  if(is.null(feature_names)){feature_names = paste0("feature_", formatC(1:nfeatures, digits = nchar(nfeatures), format = "d", flag = "0"))}
   if(is.null(subtype_names)){subtype_names = paste0("subtype_", formatC(1:nsubtypes, digits = nchar(nsubtypes), format = "d", flag = "0"))}
   
   
