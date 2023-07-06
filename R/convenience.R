@@ -8,10 +8,15 @@
 #' @param simplify A logical indicating whether results should be simplified if possible.
 #' @return See `?apply`.
 #' @export
+#' 
 #'
 apply_by <- function(X, MARGIN, FUN, na.exclude = TRUE, ..., simplify = TRUE){
-  stopifnot( "MARGIN must be exactly 1, 2 or 3." = sum(MARGIN %in% 1:3) == 1)
-  
+  if(is.numeric(MARGIN))
+  {stopifnot( "If MARGIN is numeric, it must be exactly 1, 2 or 3." = sum(MARGIN %in% 1:3) == 1)}
+  if(is.character(MARGIN))
+  {stopifnot( "If MARGIN is a character sting, it must be exactly the name of the dimension to apply over." = sum(MARGIN %in% names(dimnames(X))) == 1)
+    MARGIN = which(MARGIN == names(dimnames(X)))}
+
   #Exclude NAs per iteration
   if(na.exclude){
     return(apply(X = X, 

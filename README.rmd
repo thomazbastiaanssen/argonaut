@@ -34,11 +34,11 @@ head(as.stratifiedFeatureTable(sdf))
 ```{r apply_by}
 #We can apply a function on the stratifiedFeatureTable with the apply_by() function. 
 
-stf = as.stratifiedFeatureTable(sdf)
+sft = as.stratifiedFeatureTable(sdf)
 
 #MARGIN must be exactly 1, 2 or 3, corresponding to applying a function on all observations (1) per sample, (2) per feature or (3) per subtype.  
 
 #for example, we can collapse to an unstratified feature table by summing all subtypes of the same feature. 
-apply_by(X = stf, MARGIN = 3, FUN = sum)
+apply_by(X = sft, MARGIN = 3, FUN = sum)
 
 ```

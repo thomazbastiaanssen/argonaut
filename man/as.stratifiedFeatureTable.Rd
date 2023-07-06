@@ -2,9 +2,12 @@
 % Please edit documentation in R/stratifiedFeatureTable.R
 \name{as.stratifiedFeatureTable}
 \alias{as.stratifiedFeatureTable}
+\alias{as.sft}
 \title{Generate a stratified feature table object}
 \usage{
 as.stratifiedFeatureTable(x, sep = "\\\\|")
+
+as.sft(x, sep = "\\\\|")
 }
 \arguments{
 \item{x}{A table to be formatted to `stratifiedFeatureTable` format.}

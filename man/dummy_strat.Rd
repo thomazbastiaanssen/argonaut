@@ -4,7 +4,15 @@
 \alias{dummy_strat}
 \title{Make dummy stratified data.}
 \usage{
-dummy_strat(nsubtypes, nfeatures, nsamples, type = "seq", p_missing = 0.2)
+dummy_strat(
+  nsubtypes,
+  nfeatures,
+  nsamples,
+  type = "seq",
+  feature_names = NULL,
+  subtype_names = NULL,
+  p_missing = 0.2
+)
 }
 \arguments{
 \item{nsubtypes}{An integer. How many subtypes}
@@ -14,6 +22,10 @@ dummy_strat(nsubtypes, nfeatures, nsamples, type = "seq", p_missing = 0.2)
 \item{nsamples}{An integer. How many samples}
 
 \item{type}{A character vector. One ofc("seq", "by_subtype").}
+
+\item{feature_names}{Default is NULL. Provide with a character vector of appropriate length to alter dummy names}
+
+\item{subtype_names}{Default is NULL. Provide with a character vector of appropriate length to alter dummy names}
 
 \item{p_missing}{A proportion (0-1). Indicates the number of feature-subtype pairs should be dropped.}
 }
