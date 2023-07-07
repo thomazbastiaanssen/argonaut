@@ -43,21 +43,25 @@ apply_by(X = sft, MARGIN = 3, FUN = sum)
 
 ```
 
-#Preparing to run stratified models
+#Running statistical models on stratified feature tables
 ```{r lm.sft}
 library(tidyverse)
 
 x = dummy_strat(10, nfeatures = 10, nsamples = 100, type = "by_subtype", p_missing = .30)
 x = as.sft(x)
-
-m = matrix(runif(400), ncol = 4)
 y = rnorm(100)
 
-lm(y ~ m) %>% summary
 
+#The getFeature function extracts features by name and returns a table with each subtype of that feature, per sample. 
+#getFeatures integrates with models and apply. 
 
-         
-lm(y ~ x[,1,][, !is.na(colSums(x[,1,]))]) %>% summary
+#Run a model with each subtype as a predictor
+lm(y ~ getFeature(x, 1)) %>% summary
+
+#Run a model for each individual subtype
+apply(X      = getFeature(x, 1), 
+      MARGIN = 2, 
+      FUN    = function(x){lm(y~x) %>% summary})
 
 
 ```

@@ -33,3 +33,16 @@ apply_by <- function(X, MARGIN, FUN, na.exclude = TRUE, ..., simplify = TRUE){
                simplify = simplify)
          )
 }
+
+
+#' Extract all subtypes of a feature.
+#' @description Extract a matrix from a stratified feature table 
+#' @param x A stratified feature table object. Preferably of the stratifiedFeatureTable class.   
+#' @param f Character or integer. Name or index of feature to extract. 
+#' @return A matrix with samples as rows and feature subtypes as columns
+#' @export
+#' 
+#'
+getFeature <- function(x, f){
+  x[,f,][, !is.na(colSums(x[,f,]))]
+}
