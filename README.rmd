@@ -42,3 +42,23 @@ sft = as.stratifiedFeatureTable(sdf)
 apply_by(X = sft, MARGIN = 3, FUN = sum)
 
 ```
+
+#Preparing to run stratified models
+```{r lm.sft}
+library(tidyverse)
+
+x = dummy_strat(10, nfeatures = 10, nsamples = 100, type = "by_subtype", p_missing = .30)
+x = as.sft(x)
+
+m = matrix(runif(400), ncol = 4)
+y = rnorm(100)
+
+lm(y ~ m) %>% summary
+
+
+         
+lm(y ~ x[,1,][,apply( x[,1,],2,function(xx) !any(is.na(xx)))]) %>% summary
+
+lm(y ~ x[,1,][,apply(!is.na(x[,1,]),2,any)]) %>% summary
+
+```
