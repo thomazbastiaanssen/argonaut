@@ -49,7 +49,7 @@ library(tidyverse)
 
 y = rnorm(100)
 
-x = dummy_strat(10, 
+x = dummy_strat(nsubtypes = 5, 
                 nfeatures = 10, 
                 nsamples = 100, 
                 type = "by_subtype", 
@@ -62,7 +62,7 @@ z = sample(LETTERS[1:3], 100, replace = T)
 #The getFeature function extracts features by name or index and returns a table with each subtype of that feature, per sample. 
 
 getFeature(x, "feature_003") %>% 
-  Tjazi::clr_c() %>% 
+  Tjazi::clr_c(., samples_are = "rows") %>% 
   rownames_to_column("ID") %>% 
   pivot_longer(!ID) %>% 
   
@@ -84,7 +84,7 @@ lm(y ~ getFeature(x, 1) * z) %>% summary
 #Run a model for each individual subtype
 apply(X      = getFeature(x, 1), 
       MARGIN = 2, 
-      FUN    = function(x){lm(y~x) %>% summary})
+      FUN    = function(x){lm(y~x * z) %>% summary})
 
 
 ```
