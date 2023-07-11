@@ -14,7 +14,7 @@ head(sdf)
 
     ##                       X1 X2 X3 X4
     ## subtype_01|feature_01  1  7 13 19
-    ## subtype_01|feature_03  3  9 15 21
+    ## subtype_01|feature_02  2  8 14 20
     ## subtype_02|feature_01  4 10 16 22
     ## subtype_02|feature_02  5 11 17 23
 
@@ -27,149 +27,140 @@ as.stratifiedFeatureTable(sdf)
     ## , , subtypes = subtype_01
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03
-    ##      X1          1         NA          3
-    ##      X2          7         NA          9
-    ##      X3         13         NA         15
-    ##      X4         19         NA         21
+    ## samples feature_01 feature_02
+    ##      X1          1          2
+    ##      X2          7          8
+    ##      X3         13         14
+    ##      X4         19         20
     ## 
     ## , , subtypes = subtype_02
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03
-    ##      X1          4          5         NA
-    ##      X2         10         11         NA
-    ##      X3         16         17         NA
-    ##      X4         22         23         NA
+    ## samples feature_01 feature_02
+    ##      X1          4          5
+    ##      X2         10         11
+    ##      X3         16         17
+    ##      X4         22         23
 
 ``` r
 #argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
-sdf <- dummy_strat(10, 5, 6, type = "by_subtype", p_missing = 0.2)
+
+#Let's switch it up and generate some more Argonauts with some heroic skills. 
+sdf <- board_argo(nsubtypes = 10, nfeatures = 5, nsamples = 6, p_missing = 1/2)
 
 head(sdf)
 ```
 
-    ##                          X1   X2   X3   X4   X5   X6
-    ## subtype_001|feature_01 5720 2490 4280 1795 1780 2350
-    ## subtype_001|feature_02 5720 2490 4280 1795 1780 2350
-    ## subtype_001|feature_04 2288  996 1712  718  712  940
-    ## subtype_001|feature_05 1144  498  856  359  356  470
-    ## subtype_002|feature_01  640  750  478 1510  330  840
-    ## subtype_002|feature_02  320  375  239  755  165  420
+    ##                           X1   X2   X3   X4   X5   X6
+    ## Amphidamas|Fishing       940 1044 2768 5864 6452 2624
+    ## Erginus|Fishing         2440 2260 6785 9750 2810 5105
+    ## Erginus|Natural history 1952 1808 5428 7800 2248 4084
+    ## Erginus|Wrestling       2440 2260 6785 9750 2810 5105
+    ## Erginus|History          488  452 1357 1950  562 1021
+    ## Erginus|Disguise         976  904 2714 3900 1124 2042
 
 ``` r
 head(as.stratifiedFeatureTable(sdf))
 ```
 
-    ## , , subtypes = subtype_001
+    ## , , subtypes = Amphidamas
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       5720       5720         NA       2288       1144
-    ##      X2       2490       2490         NA        996        498
-    ##      X3       4280       4280         NA       1712        856
-    ##      X4       1795       1795         NA        718        359
-    ##      X5       1780       1780         NA        712        356
-    ##      X6       2350       2350         NA        940        470
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1       NA     940      NA              NA        NA
+    ##      X2       NA    1044      NA              NA        NA
+    ##      X3       NA    2768      NA              NA        NA
+    ##      X4       NA    5864      NA              NA        NA
+    ##      X5       NA    6452      NA              NA        NA
+    ##      X6       NA    2624      NA              NA        NA
     ## 
-    ## , , subtypes = subtype_002
-    ## 
-    ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        640        320       1600       1600        960
-    ##      X2        750        375       1875       1875       1125
-    ##      X3        478        239       1195       1195        717
-    ##      X4       1510        755       3775       3775       2265
-    ##      X5        330        165        825        825        495
-    ##      X6        840        420       2100       2100       1260
-    ## 
-    ## , , subtypes = subtype_003
+    ## , , subtypes = Castor
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       2804       2804        701       2103       4206
-    ##      X2       1376       1376        344       1032       2064
-    ##      X3       4036       4036       1009       3027       6054
-    ##      X4        788        788        197        591       1182
-    ##      X5       1404       1404        351       1053       2106
-    ##      X6       3744       3744        936       2808       5616
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1       NA      NA     447             447        NA
+    ##      X2       NA      NA     243             243        NA
+    ##      X3       NA      NA    1950            1950        NA
+    ##      X4       NA      NA    1650            1650        NA
+    ##      X5       NA      NA    3081            3081        NA
+    ##      X6       NA      NA    6024            6024        NA
     ## 
-    ## , , subtypes = subtype_004
-    ## 
-    ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       3450       3450         NA       4140         NA
-    ##      X2       7225       7225         NA       8670         NA
-    ##      X3       7010       7010         NA       8412         NA
-    ##      X4       3795       3795         NA       4554         NA
-    ##      X5       4390       4390         NA       5268         NA
-    ##      X6       4690       4690         NA       5628         NA
-    ## 
-    ## , , subtypes = subtype_005
+    ## , , subtypes = Clytius
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       2750       2200         NA        550       3300
-    ##      X2        615        492         NA        123        738
-    ##      X3        145        116         NA         29        174
-    ##      X4         65         52         NA         13         78
-    ##      X5       2110       1688         NA        422       2532
-    ##      X6       1035        828         NA        207       1242
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1     1440    2160    1800              NA      2160
+    ##      X2      608     912     760              NA       912
+    ##      X3     1220    1830    1525              NA      1830
+    ##      X4     1528    2292    1910              NA      2292
+    ##      X5     3652    5478    4565              NA      5478
+    ##      X6     1460    2190    1825              NA      2190
     ## 
-    ## , , subtypes = subtype_006
-    ## 
-    ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        741       4446         NA         NA         NA
-    ##      X2        225       1350         NA         NA         NA
-    ##      X3        717       4302         NA         NA         NA
-    ##      X4        150        900         NA         NA         NA
-    ##      X5         84        504         NA         NA         NA
-    ##      X6        554       3324         NA         NA         NA
-    ## 
-    ## , , subtypes = subtype_007
+    ## , , subtypes = Erginus
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       6780         NA       5650       6780       4520
-    ##      X2       7794         NA       6495       7794       5196
-    ##      X3       2886         NA       2405       2886       1924
-    ##      X4        942         NA        785        942        628
-    ##      X5       7740         NA       6450       7740       5160
-    ##      X6       6882         NA       5735       6882       4588
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1      976    2440     488            1952      2440
+    ##      X2      904    2260     452            1808      2260
+    ##      X3     2714    6785    1357            5428      6785
+    ##      X4     3900    9750    1950            7800      9750
+    ##      X5     1124    2810     562            2248      2810
+    ##      X6     2042    5105    1021            4084      5105
     ## 
-    ## , , subtypes = subtype_008
-    ## 
-    ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        462         77        462         NA        154
-    ##      X2       1044        174       1044         NA        348
-    ##      X3        846        141        846         NA        282
-    ##      X4       1752        292       1752         NA        584
-    ##      X5       1068        178       1068         NA        356
-    ##      X6       3960        660       3960         NA       1320
-    ## 
-    ## , , subtypes = subtype_009
+    ## , , subtypes = Iphiclus
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       1150       1380        230        460        230
-    ##      X2       1980       2376        396        792        396
-    ##      X3       3025       3630        605       1210        605
-    ##      X4       1995       2394        399        798        399
-    ##      X5        355        426         71        142         71
-    ##      X6        800        960        160        320        160
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1     3300      NA      NA            3960      3300
+    ##      X2     7950      NA      NA            9540      7950
+    ##      X3     6100      NA      NA            7320      6100
+    ##      X4     4235      NA      NA            5082      4235
+    ##      X5     7250      NA      NA            8700      7250
+    ##      X6     6200      NA      NA            7440      6200
     ## 
-    ## , , subtypes = subtype_010
+    ## , , subtypes = Iphitos
     ## 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1         NA        910        546        364       1092
-    ##      X2         NA       1175        705        470       1410
-    ##      X3         NA       2035       1221        814       2442
-    ##      X4         NA        415        249        166        498
-    ##      X5         NA       1645        987        658       1974
-    ##      X6         NA       5495       3297       2198       6594
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1       NA      NA      NA            1122      1496
+    ##      X2       NA      NA      NA            1245      1660
+    ##      X3       NA      NA      NA            2730      3640
+    ##      X4       NA      NA      NA             993      1324
+    ##      X5       NA      NA      NA              99       132
+    ##      X6       NA      NA      NA            2589      3452
+    ## 
+    ## , , subtypes = Leitus
+    ## 
+    ##        features
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1       NA      NA      85              NA        NA
+    ##      X2       NA      NA     361              NA        NA
+    ##      X3       NA      NA     247              NA        NA
+    ##      X4       NA      NA     145              NA        NA
+    ##      X5       NA      NA     276              NA        NA
+    ##      X6       NA      NA     313              NA        NA
+    ## 
+    ## , , subtypes = Palaemon
+    ## 
+    ##        features
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1     5559    3706      NA            1853      7412
+    ##      X2     3204    2136      NA            1068      4272
+    ##      X3     4950    3300      NA            1650      6600
+    ##      X4     3051    2034      NA            1017      4068
+    ##      X5     6042    4028      NA            2014      8056
+    ##      X6     1719    1146      NA             573      2292
+    ## 
+    ## , , subtypes = Phronius
+    ## 
+    ##        features
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1       NA     508      NA            1524       762
+    ##      X2       NA     150      NA             450       225
+    ##      X3       NA      78      NA             234       117
+    ##      X4       NA    1406      NA            4218      2109
+    ##      X5       NA    1756      NA            5268      2634
+    ##      X6       NA     684      NA            2052      1026
 
 \#Apply_by()
 
@@ -185,13 +176,13 @@ apply_by(X = sft, MARGIN = 3, FUN = sum)
 ```
 
     ##        features
-    ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1      24497      21307       9189      18285      15606
-    ##      X2      23499      17033      10859      21752      11775
-    ##      X3      23423      25789       7281      19285      13054
-    ##      X4      12792      11186       7157      11557       5993
-    ##      X5      19261      12180       9752      16820      13050
-    ##      X6      24855      22471      16188      21083      21250
+    ## samples Disguise Fishing History Natural history Wrestling
+    ##      X1    11275    9754    2820           10858     17570
+    ##      X2    12666    6502    1816           14354     17279
+    ##      X3    14984   14761    5079           19312     25072
+    ##      X4    12714   21346    5655           20760     23778
+    ##      X5    18068   20524    8484           21410     26360
+    ##      X6    11421   11749    9183           22762     20265
 
 \#Running statistical models on stratified feature tables
 
@@ -211,13 +202,13 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
 
 ``` r
+set.seed(123)
+
 y = rnorm(100)
 
-x = dummy_strat(nsubtypes = 5, 
+x = board_argo(nsubtypes = 5, 
                 nfeatures = 10, 
-                nsamples = 100, 
-                type = "by_subtype", 
-                p_missing = .30) %>% 
+                nsamples = 100, p_missing = 0.3) %>% 
   as.sft()
 
 z = sample(LETTERS[1:3], 100, replace = T)
@@ -225,7 +216,7 @@ z = sample(LETTERS[1:3], 100, replace = T)
 
 #The getFeature function extracts features by name or index and returns a table with each subtype of that feature, per sample. 
 
-getFeature(x, "feature_003") %>% 
+getFeature(x, "Philosophy") %>% 
   Tjazi::clr_c(., samples_are = "rows") %>% 
   rownames_to_column("ID") %>% 
   pivot_longer(!ID) %>% 
@@ -235,7 +226,7 @@ getFeature(x, "feature_003") %>%
   geom_boxplot() +
   theme_bw() +
   ylab("Abundance (CLR-transformed)") + xlab(NULL) +
-  ggtitle("The abundance of feature 3 by subtype")
+  ggtitle("The philosophical skill levels of our argonauts")
 ```
 
 ![](README_files/figure-gfm/lm.sft-1.png)<!-- -->
@@ -253,28 +244,28 @@ lm(y ~ getFeature(x, 1) * z) %>% summary
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -2.48272 -0.56920  0.07903  0.58626  2.39672 
+    ## -1.98160 -0.61111 -0.06757  0.53362  2.18472 
     ## 
     ## Coefficients:
-    ##                                 Estimate Std. Error t value Pr(>|t|)  
-    ## (Intercept)                    5.191e-01  4.381e-01   1.185   0.2392  
-    ## getFeature(x, 1)subtype_01    -3.001e-04  1.423e-04  -2.108   0.0378 *
-    ## getFeature(x, 1)subtype_03    -5.837e-05  7.469e-05  -0.782   0.4366  
-    ## getFeature(x, 1)subtype_04     6.162e-04  3.973e-04   1.551   0.1245  
-    ## zB                            -6.522e-01  6.444e-01  -1.012   0.3142  
-    ## zC                            -6.359e-01  6.397e-01  -0.994   0.3229  
-    ## getFeature(x, 1)subtype_01:zB  4.201e-04  1.762e-04   2.385   0.0192 *
-    ## getFeature(x, 1)subtype_03:zB  3.706e-05  9.356e-05   0.396   0.6930  
-    ## getFeature(x, 1)subtype_04:zB -3.744e-04  4.706e-04  -0.795   0.4285  
-    ## getFeature(x, 1)subtype_01:zC  2.734e-04  1.822e-04   1.501   0.1371  
-    ## getFeature(x, 1)subtype_03:zC  2.626e-05  1.055e-04   0.249   0.8039  
-    ## getFeature(x, 1)subtype_04:zC -3.846e-04  4.626e-04  -0.832   0.4079  
+    ##                               Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)                  0.8488322  0.4881141   1.739   0.0855 .
+    ## getFeature(x, 1)Caeneus     -0.0001526  0.0000676  -2.258   0.0264 *
+    ## getFeature(x, 1)Demoleon     0.0007238  0.0004744   1.526   0.1307  
+    ## getFeature(x, 1)Orpheus     -0.0003897  0.0002037  -1.913   0.0590 .
+    ## zB                          -0.6314848  0.7243458  -0.872   0.3857  
+    ## zC                          -0.5150449  0.6327448  -0.814   0.4179  
+    ## getFeature(x, 1)Caeneus:zB   0.0001666  0.0001107   1.506   0.1357  
+    ## getFeature(x, 1)Demoleon:zB -0.0013351  0.0006876  -1.942   0.0554 .
+    ## getFeature(x, 1)Orpheus:zB   0.0005960  0.0003681   1.619   0.1090  
+    ## getFeature(x, 1)Caeneus:zC   0.0001319  0.0001014   1.301   0.1968  
+    ## getFeature(x, 1)Demoleon:zC -0.0011142  0.0006073  -1.835   0.0699 .
+    ## getFeature(x, 1)Orpheus:zC   0.0004379  0.0002762   1.586   0.1164  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.9584 on 88 degrees of freedom
-    ## Multiple R-squared:  0.1279, Adjusted R-squared:  0.01894 
-    ## F-statistic: 1.174 on 11 and 88 DF,  p-value: 0.3168
+    ## Residual standard error: 0.9054 on 88 degrees of freedom
+    ## Multiple R-squared:  0.1255, Adjusted R-squared:  0.01613 
+    ## F-statistic: 1.148 on 11 and 88 DF,  p-value: 0.3354
 
 ``` r
 #Run a model for each individual subtype
@@ -283,72 +274,74 @@ apply(X      = getFeature(x, 1),
       FUN    = function(x){lm(y~x * z) %>% summary})
 ```
 
-    ## $subtype_01
+    ## $Caeneus
     ## 
     ## Call:
     ## lm(formula = y ~ x * z)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -2.68648 -0.47247  0.03354  0.60611  2.38459 
+    ## -2.22853 -0.54211 -0.02379  0.60815  2.24717 
     ## 
     ## Coefficients:
     ##               Estimate Std. Error t value Pr(>|t|)  
-    ## (Intercept)  0.7828257  0.3208231   2.440   0.0166 *
-    ## x           -0.0002875  0.0001403  -2.049   0.0432 *
-    ## zB          -0.7869691  0.4278586  -1.839   0.0690 .
-    ## zC          -0.8120974  0.4206333  -1.931   0.0565 .
-    ## x:zB         0.0004029  0.0001718   2.345   0.0211 *
-    ## x:zC         0.0002558  0.0001779   1.438   0.1537  
+    ## (Intercept)  5.906e-01  3.044e-01   1.941   0.0553 .
+    ## x           -1.268e-04  6.736e-05  -1.882   0.0629 .
+    ## zB          -4.101e-01  4.510e-01  -0.909   0.3656  
+    ## zC          -4.213e-01  4.110e-01  -1.025   0.3080  
+    ## x:zB         1.048e-04  1.067e-04   0.982   0.3287  
+    ## x:zC         9.466e-05  1.014e-04   0.933   0.3531  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.9513 on 94 degrees of freedom
-    ## Multiple R-squared:  0.08212,    Adjusted R-squared:  0.0333 
-    ## F-statistic: 1.682 on 5 and 94 DF,  p-value: 0.1465
+    ## Residual standard error: 0.9183 on 94 degrees of freedom
+    ## Multiple R-squared:  0.03912,    Adjusted R-squared:  -0.01199 
+    ## F-statistic: 0.7654 on 5 and 94 DF,  p-value: 0.577
     ## 
     ## 
-    ## $subtype_03
+    ## $Demoleon
     ## 
     ## Call:
     ## lm(formula = y ~ x * z)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -2.65455 -0.55827  0.02549  0.58233  2.43237 
+    ## -2.04652 -0.65371 -0.02019  0.58385  2.25772 
     ## 
     ## Coefficients:
-    ##               Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept)  9.661e-02  3.027e-01   0.319    0.750
-    ## x            2.804e-05  5.708e-05   0.491    0.624
-    ## zB           3.171e-01  4.061e-01   0.781    0.437
-    ## zC          -1.568e-01  4.513e-01  -0.347    0.729
-    ## x:zB        -6.691e-05  7.973e-05  -0.839    0.403
-    ## x:zC        -3.584e-05  9.121e-05  -0.393    0.695
+    ##               Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept) -0.2396601  0.2788705  -0.859   0.3923  
+    ## x            0.0007178  0.0004794   1.497   0.1376  
+    ## zB           0.6740875  0.4506203   1.496   0.1380  
+    ## zC           0.5690926  0.4007887   1.420   0.1589  
+    ## x:zB        -0.0012048  0.0006605  -1.824   0.0713 .
+    ## x:zC        -0.0011102  0.0006093  -1.822   0.0716 .
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.9756 on 94 degrees of freedom
-    ## Multiple R-squared:  0.03467,    Adjusted R-squared:  -0.01667 
-    ## F-statistic: 0.6753 on 5 and 94 DF,  p-value: 0.6432
+    ## Residual standard error: 0.9151 on 94 degrees of freedom
+    ## Multiple R-squared:  0.04581,    Adjusted R-squared:  -0.004945 
+    ## F-statistic: 0.9026 on 5 and 94 DF,  p-value: 0.4829
     ## 
     ## 
-    ## $subtype_04
+    ## $Orpheus
     ## 
     ## Call:
     ## lm(formula = y ~ x * z)
     ## 
     ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -2.4970 -0.6305  0.0830  0.5542  2.3605 
+    ##      Min       1Q   Median       3Q      Max 
+    ## -2.39468 -0.58416 -0.05283  0.55959  2.10911 
     ## 
     ## Coefficients:
     ##               Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept) -0.1462925  0.3140814  -0.466    0.642
-    ## x            0.0004142  0.0003007   1.377    0.172
-    ## zB           0.2421284  0.4103747   0.590    0.557
-    ## zC          -0.1340445  0.4101360  -0.327    0.745
-    ## x:zB        -0.0002091  0.0003910  -0.535    0.594
-    ## x:zC        -0.0002040  0.0003769  -0.541    0.590
+    ## (Intercept)  0.5027223  0.3098211   1.623    0.108
+    ## x           -0.0003087  0.0002045  -1.510    0.134
+    ## zB          -0.4889529  0.4976591  -0.983    0.328
+    ## zC          -0.4629726  0.4122580  -1.123    0.264
+    ## x:zB         0.0003833  0.0003483   1.100    0.274
+    ## x:zC         0.0003335  0.0002783   1.198    0.234
     ## 
-    ## Residual standard error: 0.9621 on 94 degrees of freedom
-    ## Multiple R-squared:  0.06128,    Adjusted R-squared:  0.01135 
-    ## F-statistic: 1.227 on 5 and 94 DF,  p-value: 0.3025
+    ## Residual standard error: 0.925 on 94 degrees of freedom
+    ## Multiple R-squared:  0.02489,    Adjusted R-squared:  -0.02697 
+    ## F-statistic:  0.48 on 5 and 94 DF,  p-value: 0.7904
