@@ -48,11 +48,11 @@ dummy_strat <- function(nsubtypes, nfeatures, nsamples, type = "seq", feature_na
 #' @return An argonautica themed formatted data.frame.
 #' @export
 #'
-board_argo <- function(nsubtypes = 96, nfeatures = 34, nsamples = 10, type = "by_subtype", p_missing = 0.2){
+board_argo <- function(nsubtypes = 96, nfeatures = 34, nsamples = 10, type = "by_subtype", p_missing = 1/2){
   dummy_strat(nsubtypes = nsubtypes, nfeatures = nfeatures, nsamples = nsamples, 
               type = type, p_missing = p_missing, 
-              subtype_names = dummy_names(subject = "heroes", n = 96), 
-              feature_names = dummy_names(subject = "feats", n = 34))
+              subtype_names = .dummy_names(subject = "heroes", n = nsubtypes), 
+              feature_names = .dummy_names(subject = "feats", n = nfeatures))
   }  
 
 #' Provide dummy names data.
@@ -61,7 +61,7 @@ board_argo <- function(nsubtypes = 96, nfeatures = 34, nsamples = 10, type = "by
 #' @param n An integer. how many names to provide.  
 #' @return A character vector of names.
 #'
-dummy_names <- function(subject, n){
+.dummy_names <- function(subject, n){
   if(subject == "heroes"){
     stopifnot("There were only 96 argonauts" = n <= 96)
     return(sample(x = c("Acastus", "Actor", "Admetus", "Aethalides", "Amphiaraus", 
