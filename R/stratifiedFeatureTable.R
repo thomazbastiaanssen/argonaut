@@ -28,15 +28,22 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
              dimnames = dimlist
   )
   
-  ind_samples = rep(1:ncol(x), each = nrow(x))
-  ind_feature = as.integer(factor(sub(pattern = paste0(".*", sep), replacement = "", x = row.names(x)), levels = dimnames(ar)[[2]]))
-  ind_subtype = as.integer(factor(sub(pattern = paste0(sep, ".*"), replacement = "", x = row.names(x)), levels = dimnames(ar)[[3]]))
   
-  ar[cbind(ind_samples, ind_feature, ind_subtype)] <- as.vector(x)
+  #Sample indices are easy:
+  ind_samples = rep(1:ncol(x), each = nrow(x))
+  
+  #Find the indices of the features based on their order in the dimlist
+  ind_feature = as.integer(factor(sub(pattern = paste0(".*", sep), replacement = "", x = row.names(x)), levels = dimnames(ar)[[2]]))
+  
+  #Find the indices of the subtypes - these are already sorted. 
+  ind_subtype = rep.int(1:dim(ar)[3], rle(sub(pattern = paste0(sep, ".*"), replacement = "", x = row.names(x)))[[1]])
+  
+  ar[cbind(ind_samples, ind_feature, ind_subtype)] <- x
   
   #Return stratifiedFeatureTable
   new("stratifiedFeatureTable", ar)
 }
+
 
 
 # as.stratifiedFeatureTable2 <- function(x, sep = "\\|") {
