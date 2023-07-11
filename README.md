@@ -14,8 +14,8 @@ head(sdf)
 
     ##                       X1 X2 X3 X4
     ## subtype_01|feature_01  1  7 13 19
-    ## subtype_01|feature_02  2  8 14 20
     ## subtype_01|feature_03  3  9 15 21
+    ## subtype_02|feature_01  4 10 16 22
     ## subtype_02|feature_02  5 11 17 23
 
 ``` r
@@ -28,19 +28,19 @@ as.stratifiedFeatureTable(sdf)
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03
-    ##      X1          1          2          3
-    ##      X2          7          5          9
-    ##      X3         13          8         15
-    ##      X4         19         11         21
+    ##      X1          1         NA          3
+    ##      X2          7         NA          9
+    ##      X3         13         NA         15
+    ##      X4         19         NA         21
     ## 
     ## , , subtypes = subtype_02
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03
-    ##      X1         NA         14         NA
-    ##      X2         NA         17         NA
-    ##      X3         NA         20         NA
-    ##      X4         NA         23         NA
+    ##      X1          4          5         NA
+    ##      X2         10         11         NA
+    ##      X3         16         17         NA
+    ##      X4         22         23         NA
 
 ``` r
 #argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
@@ -50,12 +50,12 @@ head(sdf)
 ```
 
     ##                          X1   X2   X3   X4   X5   X6
-    ## subtype_001|feature_01  228 1269 2298 2937 1293 2364
-    ## subtype_001|feature_02  228 1269 2298 2937 1293 2364
-    ## subtype_001|feature_04  456 2538 4596 5874 2586 4728
-    ## subtype_001|feature_05  456 2538 4596 5874 2586 4728
-    ## subtype_002|feature_01 1420 2320 3316 1240  168 1652
-    ## subtype_002|feature_02 1775 2900 4145 1550  210 2065
+    ## subtype_001|feature_01 5720 2490 4280 1795 1780 2350
+    ## subtype_001|feature_02 5720 2490 4280 1795 1780 2350
+    ## subtype_001|feature_04 2288  996 1712  718  712  940
+    ## subtype_001|feature_05 1144  498  856  359  356  470
+    ## subtype_002|feature_01  640  750  478 1510  330  840
+    ## subtype_002|feature_02  320  375  239  755  165  420
 
 ``` r
 head(as.stratifiedFeatureTable(sdf))
@@ -65,111 +65,111 @@ head(as.stratifiedFeatureTable(sdf))
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        228        228         NA        456        456
-    ##      X2       1420       1775         NA       1775       7038
-    ##      X3        328        820         NA       1338        240
-    ##      X4        892       4692         NA       7038        172
-    ##      X5       5865        879         NA       2637       2538
-    ##      X6       3516         60         NA        300       2934
+    ##      X1       5720       5720         NA       2288       1144
+    ##      X2       2490       2490         NA        996        498
+    ##      X3       4280       4280         NA       1712        856
+    ##      X4       1795       1795         NA        718        359
+    ##      X5       1780       1780         NA        712        356
+    ##      X6       2350       2350         NA        940        470
     ## 
     ## , , subtypes = subtype_002
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        240       3352        355       3352         NA
-    ##      X2       4190       1566        984       1044         NA
-    ##      X3       1305        258        892        172         NA
-    ##      X4        172       1269       4395       2538         NA
-    ##      X5       1269       2900        300       2900         NA
-    ##      X6       2320       4750       2514       2205         NA
+    ##      X1        640        320       1600       1600        960
+    ##      X2        750        375       1875       1875       1125
+    ##      X3        478        239       1195       1195        717
+    ##      X4       1510        755       3775       3775       2265
+    ##      X5        330        165        825        825        495
+    ##      X6        840        420       2100       2100       1260
     ## 
     ## , , subtypes = subtype_003
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       1900       1956       1044         NA         NA
-    ##      X2       1470        355        129         NA         NA
-    ##      X3       2445       1291        580         NA         NA
-    ##      X4       1420       7712       5700         NA         NA
-    ##      X5       5164       3132       1470         NA         NA
-    ##      X6       9640       4512       1775         NA         NA
+    ##      X1       2804       2804        701       2103       4206
+    ##      X2       1376       1376        344       1032       2064
+    ##      X3       4036       4036       1009       3027       6054
+    ##      X4        788        788        197        591       1182
+    ##      X5       1404       1404        351       1053       2106
+    ##      X6       3744       3744        936       2808       5616
     ## 
     ## , , subtypes = subtype_004
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       2610         NA       6455       2934         NA
-    ##      X2       3008         NA       5784       1065         NA
-    ##      X3       2298         NA       2088       6455         NA
-    ##      X4       3316         NA       2256       7712         NA
-    ##      X5       1484         NA        829       2088         NA
-    ##      X6       1888         NA       4452       3008         NA
+    ##      X1       3450       3450         NA       4140         NA
+    ##      X2       7225       7225         NA       8670         NA
+    ##      X3       7010       7010         NA       8412         NA
+    ##      X4       3795       3795         NA       4554         NA
+    ##      X5       4390       4390         NA       5268         NA
+    ##      X6       4690       4690         NA       5628         NA
     ## 
     ## , , subtypes = subtype_005
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       4585       2298         NA       4596       5164
-    ##      X2        252       4145         NA       4145       3008
-    ##      X3       2492       3710         NA       2832       4596
-    ##      X4       3990       3668         NA       5502       5502
-    ##      X5       8295         63         NA        189       2492
-    ##      X6       5940        623         NA       3115       5940
+    ##      X1       2750       2200         NA        550       3300
+    ##      X2        615        492         NA        123        738
+    ##      X3        145        116         NA         29        174
+    ##      X4         65         52         NA         13         78
+    ##      X5       2110       1688         NA        422       2532
+    ##      X6       1035        828         NA        207       1242
     ## 
     ## , , subtypes = subtype_006
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       2937       3192       1888       3192         NA
-    ##      X2       1240       9954        315       6636         NA
-    ##      X3       1068       8910       3115       5940         NA
-    ##      X4       1844       2937       2394       5874         NA
-    ##      X5       5260       1550       6636       1550         NA
-    ##      X6       2100       2670       4455       2766         NA
+    ##      X1        741       4446         NA         NA         NA
+    ##      X2        225       1350         NA         NA         NA
+    ##      X3        717       4302         NA         NA         NA
+    ##      X4        150        900         NA         NA         NA
+    ##      X5         84        504         NA         NA         NA
+    ##      X6        554       3324         NA         NA         NA
     ## 
     ## , , subtypes = subtype_007
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        848       4208        310       6312       5874
-    ##      X2       7540        525       3204       1575       6312
-    ##      X3       1010        212       1844       1060        848
-    ##      X4       2888       6032       2625       6032       2888
-    ##      X5       1293       1212       1060        808       2586
-    ##      X6        168       4332       4524       2888        948
+    ##      X1       6780         NA       5650       6780       4520
+    ##      X2       7794         NA       6495       7794       5196
+    ##      X3       2886         NA       2405       2886       1924
+    ##      X4        942         NA        785        942        628
+    ##      X5       7740         NA       6450       7740       5160
+    ##      X6       6882         NA       5735       6882       4588
     ## 
     ## , , subtypes = subtype_008
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1        538       1293        808       2586         NA
-    ##      X2       1566        210       2166        210         NA
-    ##      X3        790       1345         42       2349         NA
-    ##      X4       5392        632       1614        948         NA
-    ##      X5      12012       1348       1566       4044         NA
-    ##      X6       1075       3003       6740      15015         NA
+    ##      X1        462         77        462         NA        154
+    ##      X2       1044        174       1044         NA        348
+    ##      X3        846        141        846         NA        282
+    ##      X4       1752        292       1752         NA        584
+    ##      X5       1068        178       1068         NA        356
+    ##      X6       3960        660       3960         NA       1320
     ## 
     ## , , subtypes = subtype_009
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       7150        860      15015        860         NA
-    ##      X2       1024       8580        645       5720         NA
-    ##      X3       2364       1536       5720       1024         NA
-    ##      X4       1652       2364        768       4728         NA
-    ##      X5       1050       2065        413       2065         NA
-    ##      X6       1290       2625       3150       1935         NA
+    ##      X1       1150       1380        230        460        230
+    ##      X2       1980       2376        396        792        396
+    ##      X3       3025       3630        605       1210        605
+    ##      X4       1995       2394        399        798        399
+    ##      X5        355        426         71        142         71
+    ##      X6        800        960        160        320        160
     ## 
     ## , , subtypes = subtype_010
     ## 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1       7920       6336       1290       9504      12012
-    ##      X2       2356        589       2945       1767       1024
-    ##      X3       4424       1106       5530       5530       4728
-    ##      X4       5330       4264       3198       4264       9504
-    ##      X5       2475       2970       1980       1980       4424
-    ##      X6        212        318        159        212        212
+    ##      X1         NA        910        546        364       1092
+    ##      X2         NA       1175        705        470       1410
+    ##      X3         NA       2035       1221        814       2442
+    ##      X4         NA        415        249        166        498
+    ##      X5         NA       1645        987        658       1974
+    ##      X6         NA       5495       3297       2198       6594
 
 \#Apply_by()
 
@@ -186,12 +186,12 @@ apply_by(X = sft, MARGIN = 3, FUN = sum)
 
     ##        features
     ## samples feature_01 feature_02 feature_03 feature_04 feature_05
-    ##      X1      28956      23723      27165      33792      23506
-    ##      X2      24066      27699      16172      23937      17382
-    ##      X3      18524      19188      19811      26700      10412
-    ##      X4      26896      33570      22950      44636      18066
-    ##      X5      44167      16119      14254      18261      12040
-    ##      X6      28149      22893      27769      31444      10034
+    ##      X1      24497      21307       9189      18285      15606
+    ##      X2      23499      17033      10859      21752      11775
+    ##      X3      23423      25789       7281      19285      13054
+    ##      X4      12792      11186       7157      11557       5993
+    ##      X5      19261      12180       9752      16820      13050
+    ##      X6      24855      22471      16188      21083      21250
 
 \#Running statistical models on stratified feature tables
 
@@ -252,30 +252,29 @@ lm(y ~ getFeature(x, 1) * z) %>% summary
     ## lm(formula = y ~ getFeature(x, 1) * z)
     ## 
     ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -3.0512 -0.8126  0.0758  0.7507  2.3962 
+    ##      Min       1Q   Median       3Q      Max 
+    ## -2.48272 -0.56920  0.07903  0.58626  2.39672 
     ## 
     ## Coefficients:
-    ##                                 Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept)                   -2.389e-01  4.069e-01  -0.587    0.559
-    ## getFeature(x, 1)subtype_02    -1.815e-04  1.215e-04  -1.494    0.139
-    ## getFeature(x, 1)subtype_03    -3.488e-05  1.428e-04  -0.244    0.808
-    ## getFeature(x, 1)subtype_04     4.379e-05  1.103e-04   0.397    0.692
-    ## getFeature(x, 1)subtype_05     2.931e-04  1.793e-04   1.634    0.106
-    ## zB                             8.280e-02  5.950e-01   0.139    0.890
-    ## zC                            -5.980e-02  5.749e-01  -0.104    0.917
-    ## getFeature(x, 1)subtype_02:zB  2.563e-04  1.595e-04   1.606    0.112
-    ## getFeature(x, 1)subtype_03:zB  1.997e-04  1.926e-04   1.037    0.303
-    ## getFeature(x, 1)subtype_04:zB -4.374e-05  2.015e-04  -0.217    0.829
-    ## getFeature(x, 1)subtype_05:zB -3.586e-04  2.194e-04  -1.635    0.106
-    ## getFeature(x, 1)subtype_02:zC  2.400e-04  1.862e-04   1.289    0.201
-    ## getFeature(x, 1)subtype_03:zC  1.505e-04  1.900e-04   0.792    0.431
-    ## getFeature(x, 1)subtype_04:zC -9.861e-05  1.976e-04  -0.499    0.619
-    ## getFeature(x, 1)subtype_05:zC -2.076e-04  2.095e-04  -0.991    0.325
+    ##                                 Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)                    5.191e-01  4.381e-01   1.185   0.2392  
+    ## getFeature(x, 1)subtype_01    -3.001e-04  1.423e-04  -2.108   0.0378 *
+    ## getFeature(x, 1)subtype_03    -5.837e-05  7.469e-05  -0.782   0.4366  
+    ## getFeature(x, 1)subtype_04     6.162e-04  3.973e-04   1.551   0.1245  
+    ## zB                            -6.522e-01  6.444e-01  -1.012   0.3142  
+    ## zC                            -6.359e-01  6.397e-01  -0.994   0.3229  
+    ## getFeature(x, 1)subtype_01:zB  4.201e-04  1.762e-04   2.385   0.0192 *
+    ## getFeature(x, 1)subtype_03:zB  3.706e-05  9.356e-05   0.396   0.6930  
+    ## getFeature(x, 1)subtype_04:zB -3.744e-04  4.706e-04  -0.795   0.4285  
+    ## getFeature(x, 1)subtype_01:zC  2.734e-04  1.822e-04   1.501   0.1371  
+    ## getFeature(x, 1)subtype_03:zC  2.626e-05  1.055e-04   0.249   0.8039  
+    ## getFeature(x, 1)subtype_04:zC -3.846e-04  4.626e-04  -0.832   0.4079  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 1.107 on 85 degrees of freedom
-    ## Multiple R-squared:  0.1094, Adjusted R-squared:  -0.03733 
-    ## F-statistic: 0.7455 on 14 and 85 DF,  p-value: 0.7231
+    ## Residual standard error: 0.9584 on 88 degrees of freedom
+    ## Multiple R-squared:  0.1279, Adjusted R-squared:  0.01894 
+    ## F-statistic: 1.174 on 11 and 88 DF,  p-value: 0.3168
 
 ``` r
 #Run a model for each individual subtype
@@ -284,27 +283,29 @@ apply(X      = getFeature(x, 1),
       FUN    = function(x){lm(y~x * z) %>% summary})
 ```
 
-    ## $subtype_02
+    ## $subtype_01
     ## 
     ## Call:
     ## lm(formula = y ~ x * z)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -2.97627 -0.84347 -0.03746  0.96191  2.19865 
+    ## -2.68648 -0.47247  0.03354  0.60611  2.38459 
     ## 
     ## Coefficients:
-    ##               Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept)  0.1718469  0.2765811   0.621    0.536
-    ## x           -0.0001454  0.0001148  -1.266    0.209
-    ## zB          -0.1706782  0.3842579  -0.444    0.658
-    ## zC          -0.2480223  0.4024773  -0.616    0.539
-    ## x:zB         0.0002492  0.0001519   1.641    0.104
-    ## x:zC         0.0002177  0.0001731   1.257    0.212
+    ##               Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)  0.7828257  0.3208231   2.440   0.0166 *
+    ## x           -0.0002875  0.0001403  -2.049   0.0432 *
+    ## zB          -0.7869691  0.4278586  -1.839   0.0690 .
+    ## zC          -0.8120974  0.4206333  -1.931   0.0565 .
+    ## x:zB         0.0004029  0.0001718   2.345   0.0211 *
+    ## x:zC         0.0002558  0.0001779   1.438   0.1537  
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 1.093 on 94 degrees of freedom
-    ## Multiple R-squared:  0.03985,    Adjusted R-squared:  -0.01122 
-    ## F-statistic: 0.7804 on 5 and 94 DF,  p-value: 0.5663
+    ## Residual standard error: 0.9513 on 94 degrees of freedom
+    ## Multiple R-squared:  0.08212,    Adjusted R-squared:  0.0333 
+    ## F-statistic: 1.682 on 5 and 94 DF,  p-value: 0.1465
     ## 
     ## 
     ## $subtype_03
@@ -313,21 +314,21 @@ apply(X      = getFeature(x, 1),
     ## lm(formula = y ~ x * z)
     ## 
     ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -3.0643 -0.7674  0.1164  0.7485  2.5674 
+    ##      Min       1Q   Median       3Q      Max 
+    ## -2.65455 -0.55827  0.02549  0.58233  2.43237 
     ## 
     ## Coefficients:
     ##               Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept) -5.434e-02  3.048e-01  -0.178    0.859
-    ## x           -6.724e-06  1.304e-04  -0.052    0.959
-    ## zB          -6.550e-02  4.263e-01  -0.154    0.878
-    ## zC          -1.158e-01  4.019e-01  -0.288    0.774
-    ## x:zB         1.577e-04  1.703e-04   0.926    0.357
-    ## x:zC         1.441e-04  1.762e-04   0.818    0.416
+    ## (Intercept)  9.661e-02  3.027e-01   0.319    0.750
+    ## x            2.804e-05  5.708e-05   0.491    0.624
+    ## zB           3.171e-01  4.061e-01   0.781    0.437
+    ## zC          -1.568e-01  4.513e-01  -0.347    0.729
+    ## x:zB        -6.691e-05  7.973e-05  -0.839    0.403
+    ## x:zC        -3.584e-05  9.121e-05  -0.393    0.695
     ## 
-    ## Residual standard error: 1.092 on 94 degrees of freedom
-    ## Multiple R-squared:  0.04221,    Adjusted R-squared:  -0.008739 
-    ## F-statistic: 0.8285 on 5 and 94 DF,  p-value: 0.5326
+    ## Residual standard error: 0.9756 on 94 degrees of freedom
+    ## Multiple R-squared:  0.03467,    Adjusted R-squared:  -0.01667 
+    ## F-statistic: 0.6753 on 5 and 94 DF,  p-value: 0.6432
     ## 
     ## 
     ## $subtype_04
@@ -337,40 +338,17 @@ apply(X      = getFeature(x, 1),
     ## 
     ## Residuals:
     ##     Min      1Q  Median      3Q     Max 
-    ## -3.0360 -0.8373  0.0868  0.8068  2.3280 
+    ## -2.4970 -0.6305  0.0830  0.5542  2.3605 
     ## 
     ## Coefficients:
     ##               Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept) -1.333e-01  2.729e-01  -0.488    0.626
-    ## x            3.669e-05  9.774e-05   0.375    0.708
-    ## zB           2.416e-01  4.675e-01   0.517    0.606
-    ## zC           2.068e-01  4.052e-01   0.510    0.611
-    ## x:zB         5.262e-06  1.839e-04   0.029    0.977
-    ## x:zC        -4.934e-05  1.803e-04  -0.274    0.785
+    ## (Intercept) -0.1462925  0.3140814  -0.466    0.642
+    ## x            0.0004142  0.0003007   1.377    0.172
+    ## zB           0.2421284  0.4103747   0.590    0.557
+    ## zC          -0.1340445  0.4101360  -0.327    0.745
+    ## x:zB        -0.0002091  0.0003910  -0.535    0.594
+    ## x:zC        -0.0002040  0.0003769  -0.541    0.590
     ## 
-    ## Residual standard error: 1.109 on 94 degrees of freedom
-    ## Multiple R-squared:  0.01149,    Adjusted R-squared:  -0.04109 
-    ## F-statistic: 0.2184 on 5 and 94 DF,  p-value: 0.9538
-    ## 
-    ## 
-    ## $subtype_05
-    ## 
-    ## Call:
-    ## lm(formula = y ~ x * z)
-    ## 
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -3.00086 -0.79466  0.07477  0.86330  2.31838 
-    ## 
-    ## Coefficients:
-    ##               Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept) -0.4816084  0.3302309  -1.458    0.148
-    ## x            0.0002703  0.0001696   1.594    0.114
-    ## zB           0.6575601  0.4382578   1.500    0.137
-    ## zC           0.3976257  0.4128154   0.963    0.338
-    ## x:zB        -0.0002603  0.0002002  -1.300    0.197
-    ## x:zC        -0.0001896  0.0001977  -0.959    0.340
-    ## 
-    ## Residual standard error: 1.092 on 94 degrees of freedom
-    ## Multiple R-squared:  0.0416, Adjusted R-squared:  -0.009377 
-    ## F-statistic: 0.8161 on 5 and 94 DF,  p-value: 0.5412
+    ## Residual standard error: 0.9621 on 94 degrees of freedom
+    ## Multiple R-squared:  0.06128,    Adjusted R-squared:  0.01135 
+    ## F-statistic: 1.227 on 5 and 94 DF,  p-value: 0.3025
