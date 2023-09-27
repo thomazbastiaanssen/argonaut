@@ -30,7 +30,7 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
   
   
   #Sample indices are easy:
-  ind_samples = rep(1:ncol(x), each = nrow(x))
+  #ind_samples = rep(1:ncol(x), each = nrow(x))
   
   #Find the indices of the features based on their order in the dimlist
   ind_feature = as.integer(factor(sub(pattern = paste0(".*", sep), replacement = "", x = row.names(x)), levels = dimnames(ar)[[2]]))
@@ -38,13 +38,26 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
   #Find the indices of the subtypes - these are already sorted. 
   ind_subtype = rep.int(1:dim(ar)[3], rle(sub(pattern = paste0(sep, ".*"), replacement = "", x = row.names(x)))[[1]])
   
-  ar[cbind(ind_samples, ind_feature, ind_subtype)] <- x
+  #Collate 
+  arr_ind <- cbind(NA, ind_feature, ind_subtype) 
+
+  #Chunk per sample to avoid max vector size
+  for(i in 1:ncol(x)){
+    
+    #Generate relevant index
+    ind = (nrow(x) * (i -1)) + 1:nrow(x)
+    
+    #Update array index
+    arr_ind[,1] <- i
+    
+    #Introduce measurements
+    ar[arr_ind] <- x[ind]
+  }
+  #ar[cbind(ind_samples, ind_feature, ind_subtype)] <- x
   
   #Return stratifiedFeatureTable
   new("stratifiedFeatureTable", ar)
 }
-
-
 
 # as.stratifiedFeatureTable2 <- function(x, sep = "\\|") {
 #   
