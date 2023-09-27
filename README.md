@@ -13,10 +13,10 @@ head(sdf)
 ```
 
     ##                       X1 X2 X3 X4
-    ## subtype_01|feature_01  1  7 13 19
     ## subtype_01|feature_02  2  8 14 20
+    ## subtype_01|feature_03  3  9 15 21
     ## subtype_02|feature_01  4 10 16 22
-    ## subtype_02|feature_02  5 11 17 23
+    ## subtype_02|feature_03  6 12 18 24
 
 ``` r
 #wrangle to stratifiedFeatureTable
@@ -27,20 +27,20 @@ as.stratifiedFeatureTable(sdf)
     ## , , subtypes = subtype_01
     ## 
     ##        features
-    ## samples feature_01 feature_02
-    ##      X1          1          2
-    ##      X2          7          8
-    ##      X3         13         14
-    ##      X4         19         20
+    ## samples feature_01 feature_02 feature_03
+    ##      X1         NA          2          3
+    ##      X2         NA          8          9
+    ##      X3         NA         14         15
+    ##      X4         NA         20         21
     ## 
     ## , , subtypes = subtype_02
     ## 
     ##        features
-    ## samples feature_01 feature_02
-    ##      X1          4          5
-    ##      X2         10         11
-    ##      X3         16         17
-    ##      X4         22         23
+    ## samples feature_01 feature_02 feature_03
+    ##      X1          4         NA          6
+    ##      X2         10         NA         12
+    ##      X3         16         NA         18
+    ##      X4         22         NA         24
 
 ``` r
 #argonaut is robust to incomplete input, for example when a microbe doesn't have a gene. 
@@ -51,116 +51,127 @@ sdf <- board_argo(nsubtypes = 10, nfeatures = 5, nsamples = 6, p_missing = 1/2)
 head(sdf)
 ```
 
-    ##                           X1   X2   X3   X4   X5   X6
-    ## Amphidamas|Fishing       940 1044 2768 5864 6452 2624
-    ## Erginus|Fishing         2440 2260 6785 9750 2810 5105
-    ## Erginus|Natural history 1952 1808 5428 7800 2248 4084
-    ## Erginus|Wrestling       2440 2260 6785 9750 2810 5105
-    ## Erginus|History          488  452 1357 1950  562 1021
-    ## Erginus|Disguise         976  904 2714 3900 1124 2042
+    ##                             X1  X2   X3   X4  X5   X6
+    ## Asclepius|Discus throwing  268 136  416  672 780  480
+    ## Asclepius|Oration          335 170  520  840 975  600
+    ## Iolaus|Hunting            1342  46 5614 6202 898 2896
+    ## Iolaus|Discus throwing     671  23 2807 3101 449 1448
+    ## Iolaus|Running             671  23 2807 3101 449 1448
+    ## Thersanon|Running          472 496  652  544 208  992
 
 ``` r
 head(as.stratifiedFeatureTable(sdf))
 ```
 
-    ## , , subtypes = Amphidamas
+    ## , , subtypes = Admetus
     ## 
     ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1       NA     940      NA              NA        NA
-    ##      X2       NA    1044      NA              NA        NA
-    ##      X3       NA    2768      NA              NA        NA
-    ##      X4       NA    5864      NA              NA        NA
-    ##      X5       NA    6452      NA              NA        NA
-    ##      X6       NA    2624      NA              NA        NA
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1              NA      88      NA      NA     352
+    ##      X2              NA     118      NA      NA     472
+    ##      X3              NA      18      NA      NA      72
+    ##      X4              NA      55      NA      NA     220
+    ##      X5              NA      30      NA      NA     120
+    ##      X6              NA      10      NA      NA      40
     ## 
-    ## , , subtypes = Castor
-    ## 
-    ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1       NA      NA     447             447        NA
-    ##      X2       NA      NA     243             243        NA
-    ##      X3       NA      NA    1950            1950        NA
-    ##      X4       NA      NA    1650            1650        NA
-    ##      X5       NA      NA    3081            3081        NA
-    ##      X6       NA      NA    6024            6024        NA
-    ## 
-    ## , , subtypes = Clytius
+    ## , , subtypes = Asclepius
     ## 
     ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1     1440    2160    1800              NA      2160
-    ##      X2      608     912     760              NA       912
-    ##      X3     1220    1830    1525              NA      1830
-    ##      X4     1528    2292    1910              NA      2292
-    ##      X5     3652    5478    4565              NA      5478
-    ##      X6     1460    2190    1825              NA      2190
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1             268      NA      NA     335      NA
+    ##      X2             136      NA      NA     170      NA
+    ##      X3             416      NA      NA     520      NA
+    ##      X4             672      NA      NA     840      NA
+    ##      X5             780      NA      NA     975      NA
+    ##      X6             480      NA      NA     600      NA
     ## 
-    ## , , subtypes = Erginus
-    ## 
-    ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1      976    2440     488            1952      2440
-    ##      X2      904    2260     452            1808      2260
-    ##      X3     2714    6785    1357            5428      6785
-    ##      X4     3900    9750    1950            7800      9750
-    ##      X5     1124    2810     562            2248      2810
-    ##      X6     2042    5105    1021            4084      5105
-    ## 
-    ## , , subtypes = Iphiclus
+    ## , , subtypes = Ialmenus
     ## 
     ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1     3300      NA      NA            3960      3300
-    ##      X2     7950      NA      NA            9540      7950
-    ##      X3     6100      NA      NA            7320      6100
-    ##      X4     4235      NA      NA            5082      4235
-    ##      X5     7250      NA      NA            8700      7250
-    ##      X6     6200      NA      NA            7440      6200
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1              NA     912     456     912    2280
+    ##      X2              NA    1868     934    1868    4670
+    ##      X3              NA     786     393     786    1965
+    ##      X4              NA     126      63     126     315
+    ##      X5              NA     890     445     890    2225
+    ##      X6              NA     496     248     496    1240
     ## 
-    ## , , subtypes = Iphitos
-    ## 
-    ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1       NA      NA      NA            1122      1496
-    ##      X2       NA      NA      NA            1245      1660
-    ##      X3       NA      NA      NA            2730      3640
-    ##      X4       NA      NA      NA             993      1324
-    ##      X5       NA      NA      NA              99       132
-    ##      X6       NA      NA      NA            2589      3452
-    ## 
-    ## , , subtypes = Leitus
+    ## , , subtypes = Iolaus
     ## 
     ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1       NA      NA      85              NA        NA
-    ##      X2       NA      NA     361              NA        NA
-    ##      X3       NA      NA     247              NA        NA
-    ##      X4       NA      NA     145              NA        NA
-    ##      X5       NA      NA     276              NA        NA
-    ##      X6       NA      NA     313              NA        NA
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1             671      NA    1342      NA     671
+    ##      X2              23      NA      46      NA      23
+    ##      X3            2807      NA    5614      NA    2807
+    ##      X4            3101      NA    6202      NA    3101
+    ##      X5             449      NA     898      NA     449
+    ##      X6            1448      NA    2896      NA    1448
     ## 
-    ## , , subtypes = Palaemon
-    ## 
-    ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1     5559    3706      NA            1853      7412
-    ##      X2     3204    2136      NA            1068      4272
-    ##      X3     4950    3300      NA            1650      6600
-    ##      X4     3051    2034      NA            1017      4068
-    ##      X5     6042    4028      NA            2014      8056
-    ##      X6     1719    1146      NA             573      2292
-    ## 
-    ## , , subtypes = Phronius
+    ## , , subtypes = Iphis
     ## 
     ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1       NA     508      NA            1524       762
-    ##      X2       NA     150      NA             450       225
-    ##      X3       NA      78      NA             234       117
-    ##      X4       NA    1406      NA            4218      2109
-    ##      X5       NA    1756      NA            5268      2634
-    ##      X6       NA     684      NA            2052      1026
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1             336      NA    1008      NA      NA
+    ##      X2            1224      NA    3672      NA      NA
+    ##      X3            2788      NA    8364      NA      NA
+    ##      X4            2682      NA    8046      NA      NA
+    ##      X5            1658      NA    4974      NA      NA
+    ##      X6            2346      NA    7038      NA      NA
+    ## 
+    ## , , subtypes = Nauplius
+    ## 
+    ##        features
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1             896    5376      NA      NA      NA
+    ##      X2             927    5562      NA      NA      NA
+    ##      X3            1027    6162      NA      NA      NA
+    ##      X4             610    3660      NA      NA      NA
+    ##      X5            1294    7764      NA      NA      NA
+    ##      X6             704    4224      NA      NA      NA
+    ## 
+    ## , , subtypes = Orpheus
+    ## 
+    ##        features
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1            4077    4077      NA    5436    6795
+    ##      X2            3741    3741      NA    4988    6235
+    ##      X3            8040    8040      NA   10720   13400
+    ##      X4            4293    4293      NA    5724    7155
+    ##      X5            2061    2061      NA    2748    3435
+    ##      X6             570     570      NA     760     950
+    ## 
+    ## , , subtypes = Telamon
+    ## 
+    ##        features
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1              NA    1226      NA      NA      NA
+    ##      X2              NA    1510      NA      NA      NA
+    ##      X3              NA     174      NA      NA      NA
+    ##      X4              NA     851      NA      NA      NA
+    ##      X5              NA    1319      NA      NA      NA
+    ##      X6              NA      79      NA      NA      NA
+    ## 
+    ## , , subtypes = Thersanon
+    ## 
+    ##        features
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1              NA     472      NA     472     472
+    ##      X2              NA     496      NA     496     496
+    ##      X3              NA     652      NA     652     652
+    ##      X4              NA     544      NA     544     544
+    ##      X5              NA     208      NA     208     208
+    ##      X6              NA     992      NA     992     992
+    ## 
+    ## , , subtypes = Theseus
+    ## 
+    ##        features
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1              NA      NA    1422     711      NA
+    ##      X2              NA      NA    1818     909      NA
+    ##      X3              NA      NA    2958    1479      NA
+    ##      X4              NA      NA     258     129      NA
+    ##      X5              NA      NA    3366    1683      NA
+    ##      X6              NA      NA     342     171      NA
 
 \#Apply_by()
 
@@ -176,13 +187,13 @@ apply_by(X = sft, MARGIN = 3, FUN = sum)
 ```
 
     ##        features
-    ## samples Disguise Fishing History Natural history Wrestling
-    ##      X1    11275    9754    2820           10858     17570
-    ##      X2    12666    6502    1816           14354     17279
-    ##      X3    14984   14761    5079           19312     25072
-    ##      X4    12714   21346    5655           20760     23778
-    ##      X5    18068   20524    8484           21410     26360
-    ##      X6    11421   11749    9183           22762     20265
+    ## samples Discus throwing Fishing Hunting Oration Running
+    ##      X1            6248   12151    4228    7866   10570
+    ##      X2            6051   13295    6470    8431   11896
+    ##      X3           15078   15832   17329   14157   18896
+    ##      X4           11358    9529   14569    7363   11335
+    ##      X5            6242   12272    9683    6504    6437
+    ##      X6            5548    6371   10524    3019    4670
 
 \#Running statistical models on stratified feature tables
 
@@ -190,16 +201,16 @@ apply_by(X = sft, MARGIN = 3, FUN = sum)
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-    ## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
-    ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-    ## ✔ readr   2.1.2     ✔ forcats 0.5.1
-
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.3     ✔ readr     2.1.4
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+    ## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+    ## ✔ purrr     1.0.2     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
 ``` r
 set.seed(123)
