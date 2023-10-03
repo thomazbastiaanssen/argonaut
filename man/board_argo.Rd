@@ -9,7 +9,7 @@ board_argo(
   nfeatures = 34,
   nsamples = 10,
   type = "by_subtype",
-  p_missing = 0.2
+  p_missing = 1/2
 )
 }
 \arguments{
