@@ -10,7 +10,6 @@ setClass("stratifiedFeatureTable",
 #'
 #' @description Make a stratifiedFeatureTable, a specialized S4 class to represent stratified feature data.
 #' @return A stratifiedFeatureTable object.
-#' @export
 setValidity("stratifiedFeatureTable", function(object) {
   if (!identical(names(dimnames(object)), c("samples","features","subtypes"))) {
     'dimnames must be exactly c("samples","features","subtypes").' 
@@ -24,6 +23,7 @@ setValidity("stratifiedFeatureTable", function(object) {
 #' @description Make a stratifiedFeatureTable, a specialized S4 class to represent stratified feature data.
 #' @param x Asuitably shaped array to be changed to `stratifiedFeatureTable` format.
 #' @return A stratifiedFeatureTable object.
+#' @importFrom methods new
 #' @export
 stratifiedFeatureTable <- function(x){
   new("stratifiedFeatureTable", x)
