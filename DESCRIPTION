@@ -12,3 +12,8 @@ Imports:
     methods
 License: GPL (>= 3) | BSD_3_clause + file LICENSE
 RoxygenNote: 7.2.3
+Collate: 
+    'allClasses.R'
+    'convenience.R'
+    'stratifiedFeatureTable.R'
+    'utils.R'

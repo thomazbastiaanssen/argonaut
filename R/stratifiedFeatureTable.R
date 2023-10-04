@@ -99,5 +99,22 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
 
 
 #' @rdname as.stratifiedFeatureTable
+#' @include allClasses.R
 #' @export
 as.sft <- as.stratifiedFeatureTable
+
+#' Make a suitably shaped array into a stratifiedFeatureTable. 
+#'
+#' @description Make a stratifiedFeatureTable, a specialized S4 class to represent stratified feature data.
+#' @param x Asuitably shaped array to be changed to `stratifiedFeatureTable` format.
+#' @return A stratifiedFeatureTable object.
+#' @importFrom methods new
+#' @export
+#' 
+stratifiedFeatureTable <- function(x) new("stratifiedFeatureTable", x)
+
+#' @rdname stratifiedFeatureTable
+#' @export
+#' 
+sft <- stratifiedFeatureTable
+
