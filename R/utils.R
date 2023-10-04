@@ -7,6 +7,7 @@
 #' @param feature_names Default is NULL. Provide with a character vector of appropriate length to alter dummy names 
 #' @param subtype_names Default is NULL. Provide with a character vector of appropriate length to alter dummy names
 #' @param p_missing A proportion (0-1). Indicates the number of feature-subtype pairs should be dropped. 
+#' @importFrom stats rnorm
 #' @return A formatted data.frame.
 #' @export
 #'

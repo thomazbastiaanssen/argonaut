@@ -6,7 +6,7 @@
 #'
 #' @param x A table to be formatted to `stratifiedFeatureTable` format.
 #' @param sep A character string to separate the terms. 
-
+#' @importFrom methods new
 #' @export
 #' @examples
 #' sdf <- dummy_strat(10, 20, 10)
@@ -96,11 +96,6 @@ as.stratifiedFeatureTable <- function(x, sep = "\\|") {
 #   #Return stratifiedFeatureTable
 #   new("stratifiedFeatureTable", ar)
 # }
-
-
-
-
-
 
 
 #' @rdname as.stratifiedFeatureTable
