@@ -9,11 +9,9 @@ Maintainer: Thomaz Bastiaanssen <thomaz.bastiaanssen@ucc.ie>
 Description: An R package about dealing with stratified feature tables.
 Imports:
     stats, 
-    methods
+    methods,
+    deleuze
+Additional_repositories:
+     https://github.com/thomazbastiaanssen/deleuze/
 License: GPL (>= 3) | BSD_3_clause + file LICENSE
 RoxygenNote: 7.2.3
-Collate: 
-    'allClasses.R'
-    'convenience.R'
-    'stratifiedFeatureTable.R'
-    'utils.R'
